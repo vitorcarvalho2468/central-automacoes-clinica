@@ -18,10 +18,10 @@ dist/
 .DS_Store
 
 # Planilhas: NUNCA comitar dados reais de paciente.
-# Ignora todo .xlsx/.xlsm, menos os exemplos fictícios de sample_data/
+# Ignora todo .xlsx/.xlsm, menos os exemplos ficticios de sample_data/
 *.xlsx
 *.xlsm
 !sample_data/**
 
-# Perfis de navegador / dados locais dos robôs (ficam em ~/CentralAutomacoes)
+# Perfis de navegador / dados locais dos robos (ficam em ~/CentralAutomacoes)
 CentralAutomacoes/

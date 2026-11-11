@@ -30,10 +30,21 @@ Cada automação tem uma janela própria, abertas pela tela inicial:
 
 ### Telas
 
-> _Coloque aqui um print da tela inicial e um GIF de alguma automação rodando._
-> _Salve as imagens em `docs/` e referencie, por exemplo:_
->
-> `![Tela inicial](docs/tela-inicial.png)`
+**Tela inicial** — um botão para cada automação:
+
+![Tela inicial da Central de Automações](docs/tela-inicial.png)
+
+**União de conferências** — junta as planilhas da semana numa geral padronizada:
+
+![Janela da União de Conferências](docs/uniao.png)
+
+**Redistribuição de feriado** — remaneja a agenda do feriado pelos outros dias (acha o feriado sozinho):
+
+![Janela da Redistribuição de Feriado](docs/feriado.png)
+
+**Extrator de TR** — limpa a coluna "Observação", deixando só o código da guia:
+
+![Janela do Extrator de TR](docs/extrator-tr.png)
 
 ### Alguns detalhes de que eu me orgulho
 

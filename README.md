@@ -7,8 +7,8 @@ de agendas e consolidação de planilhas.
 Comecei esse projeto pra resolver um problema meu de verdade. Toda semana eu perdia horas
 abrindo guia por guia nos portais dos convênios pra conferir se o atendimento tinha sido
 confirmado, remanejando agenda quando caía feriado no meio da semana, e no fim juntando um
-monte de planilha numa só na mão. Fui automatizando cada pedaço disso, e com o tempo virou
-essa "central" com um botão pra cada tarefa.
+monte de planilha numa só na mão. Fui automatizando cada pedaço disso ao longo dos últimos meses, no uso real da clínica, e com
+o tempo virou essa "central" com um botão pra cada tarefa.
 
 > **Importante:** o programa nunca guarda login ou senha. Em todos os robôs que acessam portal,
 > **o login é feito por você, na mão**, na janela do navegador que abre — o robô só continua

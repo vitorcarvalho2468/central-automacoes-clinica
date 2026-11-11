@@ -1,0 +1,58 @@
+ROBO UNIMED GUARULHOS - FINALIZACAO DE GUIAS NO SGU-CARD
+=========================================================
+
+PRIMEIRA VEZ
+1. Extraia todos os arquivos numa mesma pasta (junto com a Central de Automacoes).
+2. De dois cliques em "Instalar dependencias.bat" e espere terminar.
+
+USO
+1. Abra a Central de Automacoes e clique em "Robo Unimed" (ou: python interface_unimed.py).
+2. Escolha a funcao (aba "Pela planilha" ou "Por periodo").
+3. Opcoes:
+   "Testar so as primeiras" = poucas guias para teste (0 = todas).
+   "Simulacao" ligado = o robo abre e confere tudo, mas NAO clica em Finalizar Parcial.
+   "Abas no portal ao mesmo tempo" (1 a 5, padrao 3): voce faz o login uma vez e o robo
+   abre as outras abas a partir dela, ja logadas. Mais abas = mais rapido.
+   Se alguma aba nao vier logada, o robo fecha ela e segue com as outras.
+   Se o portal reclamar ou ficar lento, use 1.
+4. O navegador abre no SGU-Card: FACA O LOGIN VOCE MESMO. O robo espera ate 15 minutos
+   e depois continua sozinho. Nao mexa no navegador enquanto ele trabalha.
+   Se a sessao cair no meio, ele avisa no log: faca o login de novo e ele continua.
+
+FUNCAO 1 - PELA PLANILHA
+  Entrada: exportacao da agenda (colunas Data da Agenda, Paciente, Status da Agenda (combo),
+  Observacao = numero da guia, Carteirinha...).
+  Para cada guia: Exames em aberto > Numero da guia (sem filtro de data) > Filtrar > abre a guia
+  > le as datas de leitura/assinatura das sessoes > se o DIA da Data da Agenda estiver entre
+  elas: Finalizar Parcial > Confirmar.
+  Saida: "<planilha> - Unimed <data hora>.xlsx" na mesma pasta (a original nao e alterada),
+  com as colunas Status e Status Detalhado logo depois de Observacao:
+    SEM TR       linha sem numero de guia
+    QR Lido      tem leitura no dia e a guia foi finalizada
+                 (falta/nao chegou com leitura: QR Lido + aviso, linha em amarelo)
+    QR Nao lido  sem leitura no dia, guia nao encontrada em Exames em aberto,
+                 guia de outro paciente ou erro ao finalizar (motivo no Status Detalhado)
+  Aba "Guias Unimed": o que o portal mostrou de cada guia e a mensagem dele.
+
+FUNCAO 2 - POR PERIODO
+  Exames em aberto > Data de atendimento de/ate (nenhum outro filtro) > Filtrar.
+  O robo junta as guias de TODAS as paginas e depois abre uma por uma:
+    - tem ALGUMA data de leitura/assinatura preenchida (qualquer data): Finalizar Parcial > Confirmar
+    - nenhuma data de assinatura: nao mexe e passa para a proxima ("SEM ASSINATURA")
+  Depois do Finalizar Parcial a guia continua em Exames em aberto com um atendimento novo (data
+  de agora); por isso o robo junta a lista toda ANTES de comecar a finalizar.
+  Saida: "Finalizacao Unimed <periodo> <data hora>.xlsx" na Area de Trabalho
+  (FINALIZADA verde | SEM ASSINATURA | NAO ENCONTRADA amarelo | ERRO vermelho).
+
+CUIDADOS
+  - Finalizar nao tem volta. Na primeira vez teste com 1 guia e confira no portal.
+  - So conta como finalizada a guia que chegou na pagina de sucesso do portal. Se a pagina de
+    sucesso for de OUTRA guia (problema com varias abas), o robo avisa como ERRO para conferir.
+  - Se o mesmo erro se repetir em 3 guias seguidas, o robo para (as outras ficam sem processar).
+  - O portal usa um codigo de seguranca em cada link: o robo so navega pelos links do
+    proprio portal (endereco montado a mao derruba a sessao).
+
+ARQUIVOS
+  interface_unimed.py ... a janela
+  robo_unimed.py ........ robo do portal e preenchimento da planilha
+  Preferencias e o perfil do navegador ficam em Usuario\CentralAutomacoes\Unimed

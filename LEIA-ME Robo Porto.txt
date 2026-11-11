@@ -1,0 +1,48 @@
+ROBO PORTO SAUDE - CONFERENCIA DAS GUIAS (abas PORTO e PORTO CONV)
+==================================================================
+
+PRIMEIRA VEZ
+1. Extraia todos os arquivos numa mesma pasta.
+2. De dois cliques em "Instalar dependencias.bat" e espere terminar.
+
+USO
+1. De dois cliques em "Abrir Robo Porto.bat".
+2. Escolha a planilha de conferencia do mes (abas PORTO e PORTO CONV).
+3. Marque o que conferir: ABA (aba PORTO), Convencional (aba PORTO CONV) ou os dois.
+   Unidade: "Todas" ou uma so. "Testar so as primeiras" = poucas linhas para teste.
+   "Abas no portal ao mesmo tempo" (1 a 5, padrao 3): voce faz o login uma vez e o
+   robo abre as outras janelas a partir dela, ja logadas. Mais janelas = mais rapido.
+   Se alguma janela nao vier logada, o robo fecha ela e segue com as outras.
+   Se o portal reclamar ou ficar lento, use 1.
+4. Periodo: data da solicitacao das guias no portal (botao "Ultimos 90 dias").
+   O portal pesquisa no maximo 90 dias por vez; se o periodo for maior, o robo
+   pesquisa em partes (demora mais).
+5. Clique em "Abrir o portal e conferir". O navegador abre no portal da Porto:
+   FACA O LOGIN VOCE MESMO (CPF e senha). O robo espera ate 15 minutos e depois
+   continua sozinho. Nao mexa nas janelas do navegador enquanto ele trabalha.
+
+O QUE O ROBO FAZ EM CADA GUIA
+  Autorizacao > Pesquisar Autorizacao > periodo + N Guia Prestador > Aplicar
+  > Expandir > Imprimir (le o PDF da guia: procedimento e quantidade autorizada).
+  Ele nunca clica em outros botoes da guia (ex.: Cancelar).
+
+REGRAS
+  PORTO      : soma a quantidade autorizada de TODAS as guias do paciente
+               e compara com o TOTAL MES (a terapia nao importa).
+  PORTO CONV : o procedimento da guia tem que ser o do Grupo de Procedimento
+               e a quantidade autorizada tem que ser a Quantidade.
+  Tambem avisa: guia de outro paciente, guia negada/cancelada, numero de guia
+  com digitos a mais ou a menos, guia nao encontrada no periodo.
+
+RESULTADO
+  "Resultado Porto <data>.xlsx" na mesma pasta da planilha (ela nao e alterada):
+    aba Resultado : uma linha por linha da planilha
+                    OK (verde) | AVISO (amarelo) | ERRO (amarelo) |
+                    DIVERGENTE (vermelho) | SEM GUIA (cinza)
+    aba Guias     : tudo o que o portal mostrou de cada guia
+
+ARQUIVOS
+  interface_porto.py ..... a janela
+  robo_porto.py .......... robo do portal e conferencia
+  guia_porto_pdf.py ...... leitura do PDF da guia
+  Preferencias e o perfil do navegador ficam em Usuario\CentralAutomacoes\Porto

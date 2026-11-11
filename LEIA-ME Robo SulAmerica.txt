@@ -1,0 +1,98 @@
+ROBï¿½ SULAMï¿½RICA - CONFERï¿½NCIA DE GUIAS E AGENDAS
+================================================
+
+PRIMEIRA VEZ
+1. Extraia todos os arquivos numa mesma pasta.
+2. Dï¿½ dois cliques em "Instalar dependencias.bat" e espere terminar.
+
+USO
+Dï¿½ dois cliques em "Abrir Robo SulAmerica.bat".
+
+No topo da janela (vale para todas as abas)
+  - Escolha a UNIDADE e digite cï¿½digo referenciado, usuï¿½rio e senha DELA.
+  - "Abas no portal ao mesmo tempo" (1 a 5): o robï¿½ faz um login sï¿½ e abre
+    essa quantidade de abas, que vï¿½o pegando as guias em paralelo. Cada
+    pï¿½gina ï¿½ conferida pelo nï¿½mero da guia. Se o portal reclamar, use 1.
+
+A unidade de cada linha ï¿½ a UND. AUT. (aba SAS) ou a UND. AUTORIZADA (aba
+SAS CONV) da planilha de conferï¿½ncia.
+
+Convencional (aba SAS CONV): uma linha por especialidade, com a QNTD do mï¿½s.
+Linhas do mesmo paciente com a MESMA GUIA (ex.: Psicologia 5 + Psicopedagogia
+5) sï¿½o somadas e conferidas juntas, como o portal e o ClinicWeb fazem.
+
+Aba 1 - Conferï¿½ncia no portal
+  - Marque o que conferir: ABA (aba SAS), Convencional (aba SAS CONV) ou os dois.
+  - ABA: compara o portal com PSICO Mï¿½S, FONO Mï¿½S, TO Mï¿½S e TOTAL Mï¿½S.
+  - Convencional: compara o autorizado da especialidade com a QNTD.
+  - O resultado vai para a ÁREA DE TRABALHO:
+    "Resultado SulAmerica Unidade X <data>.xlsx"
+  - Pedido mï¿½dico (chave "Salvar o pedido mï¿½dico", ligada por padrï¿½o): em
+    cada guia o robï¿½ clica em "Exibir anexos", baixa todos os anexos (PDFs e
+    fotos) e junta num PDF sï¿½ por paciente, na pasta da ï¿½rea de Trabalho
+    "Pedidos Mï¿½dicos SulAmï¿½rica Unidade X", que sï¿½ tem os pedidos:
+      * "<NOME DO PACIENTE>.pdf"  (todas as pï¿½ginas de todos os anexos)
+    Sem o botï¿½o "Exibir anexos": coluna "Pedido mï¿½dico" = "sem pedido anexado".
+
+Aba 2 - Gerar agendas
+  - Use a planilha de conferï¿½ncia do MESMO mï¿½s da agenda.
+  - Todo paciente com UND. AUT. da unidade escolhida ganha agenda, mesmo que
+    seja atendido em outra unidade (ou que nï¿½o tenha sessï¿½o na exportaï¿½ï¿½o).
+  - Escolha a agenda exportada (agendamentos-....xlsx). Inï¿½cio e fim sï¿½o
+    preenchidos pelo nome do arquivo.
+  - Digite os feriados separados por vï¿½rgula.
+  - Gerar agendas: o robï¿½ entra no portal com o login da unidade, pesquisa
+    o nï¿½mero da coluna GUIA da aba SAS de cada paciente (a coluna
+    Autorizaï¿½ï¿½o da agenda nï¿½o ï¿½ usada) e gera, numa pasta na ï¿½REA DE
+    TRABALHO chamada "Agendas SulAmerica Unidade X <inï¿½cio> a <fim>":
+      * "Agendas Unidade X - 2 por folha.pdf": todas as agendas, duas por
+        folha A4 (deitada, com linha de corte no meio) -> para imprimir
+      * pasta "Individuais": um PDF por paciente, para reimprimir um sï¿½
+      * "Resumo das agendas.xlsx"
+  - O resumo mostra, por terapia: planilha SAS x autorizado no portal x
+    agendado.
+  - Guias vencidas antes do inï¿½cio do perï¿½odo sï¿½o ignoradas.
+  - Regras da agenda (a carga ï¿½ semanal, nada muda de semana):
+      * sï¿½ psico, fono e TO (psicopedagogia conta como psico); reposiï¿½ï¿½o
+        nï¿½o entra; qualquer status entra
+      * valor: R$ 90 por sessï¿½o agendada, em qualquer terapia
+      * sï¿½bado nï¿½o ï¿½ faturado: vai para seg-sex da mesma semana
+      * feriado: vai para outro dia da mesma semana
+      * o prï¿½prio dia da autorizaï¿½ï¿½o jï¿½ pode ter agenda
+      * antes da autorizaï¿½ï¿½o, na mesma semana: vai para os dias seguintes
+      * semana anterior ï¿½ da autorizaï¿½ï¿½o: perdida
+      * no mï¿½ximo 5 terapias por dia; nunca passa do autorizado
+  - Se vocï¿½ jï¿½ rodou a aba 1, os resultados entram na lista "Resultados jï¿½
+    salvos" e essas guias nï¿½o sï¿½o consultadas de novo (ï¿½ opcional).
+
+Aba 3 - Conferir faturamento
+  - Marque o que conferir: ABA (aba SAS), Convencional (aba SAS CONV) ou os dois.
+  - Escolha o "Relatï¿½rio de Conferï¿½ncia de Faturamento" exportado do ClinicWeb.
+  - Ligaï¿½ï¿½o: coluna FATURAMENTO da aba = coluna "nï¿½ guia" do ClinicWeb
+    (na SAS CONV a coluna FATURAMENTO precisa existir e estar preenchida).
+  - Para cada paciente da unidade confere:
+      * nome faturado = PACIENTE da SAS
+      * senha faturada = SENHA / VPP da SAS = senha da GUIA no portal
+      * quantidades faturadas = PSICO Mï¿½S, FONO Mï¿½S, TO Mï¿½S e TOTAL Mï¿½S
+      * cï¿½digos: estï¿½o na tabela, sï¿½o da terapia certa e foram autorizados
+        na guia do portal
+          Psicologia     inicial 66600510 | sessï¿½o 66600480
+          Fonoaudiologia inicial 66600529 | sessï¿½o 66600499
+          Ter. Ocupacional inicial 66600537 | sessï¿½o 66600502
+        Convencional: Psicologia 50000470 (psicopedagogia entra aqui)
+                      Fonoaudiologia 50000616
+      * valor faturado = quantidade x valor da sessï¿½o
+          ABA R$ 90,00 (TOTAL Mï¿½S x 90) | convencional R$ 57,88 (QNTD x 57,88)
+  - Resultado: "Conferencia Faturamento SulAmerica Unidade X <data>.xlsx"
+    na ï¿½rea de Trabalho (OK em verde, DIVERGENTE em vermelho, com o motivo).
+
+ARQUIVOS
+  interface_robo.py ........ a janela
+  robo_sulamerica.py ....... robï¿½ do portal
+  gerador_agenda.py ........ gerador dos PDFs de agenda
+  conferencia_faturamento.py conferï¿½ncia do faturamento do ClinicWeb
+  xlsx_seguro.py ........... lï¿½ planilhas do ClinicWeb com formataï¿½ï¿½o defeituosa
+  preferencias.json ........ criado sozinho; guarda cï¿½digo/usuï¿½rio de cada
+                             unidade e os ï¿½ltimos arquivos (nunca a senha)
+  paginas\ ................. cï¿½pia das pï¿½ginas consultadas (contï¿½m dados de
+                             pacientes: mantenha em local protegido)

@@ -1,0 +1,80 @@
+CENTRAL DE AUTOMACOES
+=====================
+Rodar direto (precisa de Python 3.10+):
+    pip install -r requirements.txt
+    python app.py
+
+Ou: de dois cliques em "Instalar dependencias.bat" (uma vez) e depois em
+"Abrir Central de Automacoes.bat".
+
+Gerar o .exe (Windows): de dois cliques em build_exe.bat
+(so gera o .exe; antes rode uma vez o "Instalar dependencias.bat")
+
+Robo Unimed (botao 5)
+---------------------
+Abre a janela do Robo Unimed Guarulhos (SGU-Card). Duas funcoes:
+  - Pela planilha: confere se a guia da coluna Observacao tem leitura no dia da agenda,
+    finaliza (Finalizar Parcial -> Confirmar) e devolve a planilha com Status / Status Detalhado.
+  - Por periodo: abre todas as guias em aberto de uma data de atendimento ate outra e finaliza
+    parcial as que tiverem data de assinatura (varias abas ao mesmo tempo, como no robo SAS).
+O login no portal voce faz no navegador que abrir. Passo a passo em "LEIA-ME Robo Unimed.txt".
+Preferencias e o perfil do navegador ficam em Usuario\CentralAutomacoes\Unimed.
+
+Robo Porto (botao 4)
+--------------------
+Abre a janela do Robo Porto (conferencia das abas PORTO e PORTO CONV no portal da
+Porto Saude; o login no portal voce faz no navegador que abrir). O passo a passo esta
+em "LEIA-ME Robo Porto.txt". Tambem abre sozinho pelo "Abrir Robo Porto.bat".
+Preferencias e o perfil do navegador ficam em Usuario\CentralAutomacoes\Porto.
+
+Robo SulAmerica (botao 3)
+-------------------------
+Abre a mesma janela do robo (conferir guias no portal, gerar agendas e conferir
+faturamento). O passo a passo esta em "LEIA-ME Robo SulAmerica.txt".
+O robo tambem continua abrindo sozinho pelo "Abrir Robo SulAmerica.bat".
+No .exe, as preferencias e a pasta "paginas" do robo ficam em
+Usuario\CentralAutomacoes\SulAmerica (a primeira vez, digite de novo o codigo e
+o usuario de cada unidade).
+
+Uniao de conferencias (botao 6)
+-------------------------------
+Junta todas as conferencias da semana (uma por convenio/dia: Amil, Intermedica, Plena Saude,
+Unimed, Unimed Seguros...) numa unica "Conferencia geral" com as 12 colunas padrao.
+1. Clique em "Adicionar planilhas" e selecione todos os arquivos da semana (pode varios de uma vez).
+2. (Opcional) de um nome para a geral.
+3. "Juntar numa geral": sai um arquivo novo na pasta do 1o arquivo.
+Da Intermedica ele usa a aba "RESULT/Resultado" (que tem o Status) sozinho; das outras usa a
+"Planilha1". Cabecalhos diferentes (Satus/Status, Convenio/Convenio, Observacao...) sao ajustados
+automaticamente. Abas extras (Planilha2, Guias...) sao ignoradas.
+
+Automacao de feriado (botao 2)
+------------------------------
+1. Escolha a planilha da semana ("Agenda" ou "Agendamentos").
+   Colunas aceitas: Dia/Data da Agenda, Hora, Paciente, Terapia/Grupo de Procedimento,
+   Unidade/Empresa, Convenio/Plano, Carteirinha.
+2. Deixe o campo Feriado VAZIO: o programa descobre sozinho qual dia da agenda e feriado
+   (nacionais, Sexta-feira Santa e 9 de julho). Se quiser, digite a(s) data(s): dd/mm/aaaa.
+3. Gerar planilha. Sai um arquivo novo ao lado do original, com:
+   Planilha de feriado | agenda | Apoio | uma aba por dia (Terca, Quarta...)
+Feriado municipal ou ponto facultativo (Carnaval, Corpus Christi) nao sao detectados
+sozinhos: digite a data, ou cadastre em "Feriados fixos da clinica" (ex.: 08/12, 15/12).
+Dois feriados na mesma semana funcionam ("Só passa de segunda e terça").
+Linhas em rosa = paciente com dia acima do limite ou em outra unidade (coluna "Atencao").
+
+Extrator de TR (botao 1)
+------------------------
+Deixa so o codigo TR (ex.: TR1234) na coluna "Observacao"; sem TR, mantem o texto.
+1. Clique em "Adicionar planilhas": elas sao copiadas para a pasta de ENTRADA e processadas.
+2. O resultado vai para SAIDA e o original vai para PROCESSADOS.
+3. "Monitorar a pasta" processa tambem arquivos soltos na pasta de entrada.
+As pastas padrao ficam em  Usuario\CentralAutomacoes\TR  (use "Alterar" para trocar).
+Nomes repetidos nao sobrescrevem: viram "arquivo (2).xlsx".
+
+Observacoes
+-----------
+- "Mostrar modalidade" ligado: escreve "Psicologia ABA"; desligado: so "Psicologia".
+- Nomes iguais com carteirinhas diferentes sao tratados como pessoas diferentes.
+- Se o paciente estiver em outra unidade no dia de destino, aparece na coluna Atencao (aba Apoio).
+- Terapias fora das 6 colunas (Nutricao, Avaliacao Neuropsicologica...) entram na coluna OUTROS.
+- Planilhas exportadas com formatacao fora do padrao (erro "expected ... Fill") sao
+  consertadas automaticamente na leitura; o arquivo original nao e alterado (xlsx_seguro.py).

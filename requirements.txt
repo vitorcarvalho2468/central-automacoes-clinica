@@ -1,0 +1,8 @@
+openpyxl
+customtkinter
+playwright
+reportlab
+pypdf
+pillow
+pdfplumber
+pyinstaller

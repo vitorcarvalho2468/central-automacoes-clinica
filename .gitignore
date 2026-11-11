@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# PyInstaller
+build/
+dist/
+*.manifest
+
+# Editores
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Planilhas: NUNCA comitar dados reais de paciente.
+# Ignora todo .xlsx/.xlsm, menos os exemplos fictícios de sample_data/
+*.xlsx
+*.xlsm
+!sample_data/**
+
+# Perfis de navegador / dados locais dos robôs (ficam em ~/CentralAutomacoes)
+CentralAutomacoes/
